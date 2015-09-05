@@ -15,6 +15,10 @@ procedure Bitmap is
    package IIO is new Ada.Text_IO.Integer_IO(Integer);
    package SU renames Ada.Strings.Unbounded;
 
+   -- Función que convierte un número natural en binario
+   -- Recibe un Natura y retorna un binario
+   -- Utiliza la libreria Unbounded para tener un manejo dinámico del tamaño.
+
    function DecToBin(N: Natural) return SU.Unbounded_String is
       use type SU.Unbounded_String;
       S: String(1 .. 1026);
@@ -33,8 +37,10 @@ procedure Bitmap is
       return Result;
    end DecToBin;
 
-   Number : Natural := 0;
-   Result : SU.Unbounded_String := SU.Null_Unbounded_String;
+   -- Declaración de variables
+   Number : Natural := 0; -- Guarda el número que el usuario digita
+   Result : SU.Unbounded_String := SU.Null_Unbounded_String; -- Guarda el número
+   							     -- de resultado Binario
 begin
    Put("Write a number: ");
    Get(Number);
