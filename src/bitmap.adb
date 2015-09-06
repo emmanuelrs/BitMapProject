@@ -21,11 +21,12 @@ procedure Bitmap is
 
    function DecToBin(N: Natural) return SU.Unbounded_String is
       use type SU.Unbounded_String;
-      S: String(1 .. 1026);
+      S: String(1 .. 14);
       Left:  Positive := S'First;
       Right: Positive := S'Last;
       Result : SU.Unbounded_String;
    begin
+      if N <= 255 then -- Verifica que el número no se más grande que 255
       IIO.Put(To => S, Item => N, Base => 2);
       while S(Left) /= '#' loop
          Left := Left + 1;
@@ -34,7 +35,11 @@ procedure Bitmap is
          Right := Right - 1;
       end loop;
       Result := SU.To_Unbounded_String(S(Left+1 .. Right-1));
-      return Result;
+         return Result;
+      else
+         Put("El numero tiene que ser entre 0 y 255");
+         raise Constraint_Error;
+      end if;
    end DecToBin;
 
    -- Declaración de variables
