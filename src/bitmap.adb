@@ -6,15 +6,26 @@
 -- Libraries
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
-with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
 with Ada.Strings.Unbounded.Text_IO; use Ada.Strings.Unbounded.Text_IO;
+with Ada.Containers.Vectors; use Ada.Containers;
 
 procedure Bitmap is
 
+
    -- Renombra paquetes para usarlos más fácilmente.
    package IIO is new Ada.Text_IO.Integer_IO(Integer);
+   
    package SU renames Ada.Strings.Unbounded;
+   
+   -- Declaración de variables
+   Number : Natural := 0; -- Guarda el número que el usuario digita
+   
+   Time : Integer := 0;   -- Guarda el número del tiempo.
+   
+   Result : SU.Unbounded_String := SU.Null_Unbounded_String; -- Guarda el número
+                                                            -- de resultado Binario
 
+   Test : Integer := 0;
    -- Función que convierte un número natural en binario
    -- Recibe un Natura y retorna un binario
    -- Utiliza la libreria Unbounded para tener un manejo dinámico del tamaño.
@@ -41,14 +52,13 @@ procedure Bitmap is
          raise Constraint_Error;
       end if;
    end DecToBin;
-
-   -- Declaración de variables
-   Number : Natural := 0; -- Guarda el número que el usuario digita
-   Result : SU.Unbounded_String := SU.Null_Unbounded_String; -- Guarda el número
-   							     -- de resultado Binario
+   
+   
 begin
    Put("Write a number: ");
    Get(Number);
+   Put("Time: ");
+   Get(Time);
    Result := DecToBin(Number);
-   Put(Result);
+   Put(Result);  
 end Bitmap;
